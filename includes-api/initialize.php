@@ -7,5 +7,7 @@ defined("CORE_PATH") ? null : define("CORE_PATH",SITE_ROOT.DS."core".DS);
 
 require_once("config.php");
 
+// define the class files
+require_once(CORE_PATH."user.php");
 
 ?>

@@ -2,7 +2,7 @@
 
 $db_user  = "root";
 $db_password = "";
-$db_name = "";
+$db_name = "2026-schoolapi";
 
 //PDO - PHP Data Objects
 // This is used for object data Programming
