@@ -9,5 +9,8 @@ require_once("config.php");
 
 // define the class files
 require_once(CORE_PATH."user.php");
+require_once(CORE_PATH."timetable.php");
+require_once(CORE_PATH."units.php");
+
 
 ?>

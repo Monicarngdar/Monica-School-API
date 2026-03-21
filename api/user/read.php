@@ -30,7 +30,7 @@ if($num > 0){
             "email" => $email,
             "date_of_birth" => $date_of_birth,
             "street1" => $street1,
-            "street1" => $street1,
+            "street2" => $street2,
             "city" => $city,
             "postCode" => $postCode,
         );

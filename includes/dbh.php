@@ -1,6 +1,8 @@
 <?php 
 // This is a Database handler
-require_once ("includes-api/config.php");
+defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
+defined('SITE_ROOT') ? null : define('SITE_ROOT', DS . 'Users' . DS . 'monic' . DS . 'Desktop' . DS . 'XAMPP' . DS . 'htdocs' . DS . 'Monica-School-API');
+require_once (SITE_ROOT.DS.'includes-api'.DS.'config.php');
 $server = "localhost";
 $dbName = $db_name;
 $dbUsername = $db_user;

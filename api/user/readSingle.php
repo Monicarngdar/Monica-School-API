@@ -7,7 +7,7 @@ header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With");
 
 
-include_once("../../includes/initialize.php");
+include_once("../../includes-api/initialize.php");
 
 //Create a new instance of the User class
 //This allows us to use its structure and functions
@@ -22,11 +22,15 @@ $num = $result->rowCount();
 
 if($num > 0){
     $user_info = array(
-        'id' => $user->id,
-        'username' => $user->username,
-        'firstName' => $user->firstName,
-        'lastName' => $user->lastName,
-        'age' => $user->age,
+        'userId' => $user->userId,
+        'name' => $user->name,
+        'surname' => $user->surname,
+        'email' => $user->email,
+        'date_of_birth' => $user->date_of_birth,
+        'street1' => $user->street1,
+        'street2' => $user->street2,
+        'city' => $user->city,
+        'postCode' => $user->postCode,
     );
     print_r(json_encode($user_info));
 }
