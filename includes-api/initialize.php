@@ -11,6 +11,8 @@ require_once("config.php");
 require_once(CORE_PATH."user.php");
 require_once(CORE_PATH."timetable.php");
 require_once(CORE_PATH."units.php");
-
+require_once(CORE_PATH."attendance.php");
+require_once(CORE_PATH."assignments.php");
+require_once(CORE_PATH."grades.php");
 
 ?>

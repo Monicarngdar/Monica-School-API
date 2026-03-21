@@ -1,21 +1,19 @@
 <?php
 
-class Unit{
+class Attendance{
 
     // db related properties
         private $conn;
-        private $table = "unit";
-        private $alias = "u";
+        private $table = "attendance";
+        private $alias = "a";
 
     // table fields
-        public $unitTimetableId;
+        public $attendanceId;
+        public $userAccountId;
         public $unitId;
-        public $classId;
-        public $lecturerId;
-        public $room;
-        public $day;
-        public $startTime;
-        public $endTime;
+        public $unitTimetableId;
+        public $date;
+        public $status;
         
     // constructor with db connection
     // a function that is triggered automatically when an instance of the class is created
@@ -23,7 +21,7 @@ class Unit{
             $this->conn = $db;
         }
 
-    // read all units records
+    // read all attendance records
         public function read(){
             $query = "SELECT * 
                                 FROM {$this->table} AS {$this->alias};";

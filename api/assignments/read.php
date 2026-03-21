@@ -12,32 +12,34 @@ include_once("../../includes-api/initialize.php");
 //Create a new instance of the Unit class
 //This allows us to use its structure and functions
 
-$unit = new Unit($db);
+$assignments = new Assignments($db);
 
-$result = $unit->read();
+$result = $assignments->read();
 $num = $result->rowCount();
 
 if($num > 0){
-    $units_list = array();
-    $units_list ['data'] = array();
+    $assignments_list = array();
+    $assignments_list ['data'] = array();
     
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $unit_item = array(
+        $assignments_item = array(
+            "assignmentId" => $assignmentId,
+            "userId" => $userId,
             "unitId" => $unitId,
-            "courseId" => $courseId,
-            "semester" => $semester,
-            "unitName" => $unitName,
-            "runitDescription" => $unitDescription,
+            "taskTitle" => $taskTitle,
+            "taskDescription" => $taskDescription,
+            "maxMark" => $maxMark,
+            "dueDate" => $dueDate,
         );
 
-        array_push($units_list['data'], $unit_item);
+        array_push($assignments_list['data'], $assignments_item);
 
     }
 
-    echo json_encode($units_list);
+    echo json_encode($assignments_list);
 }
 else{
-    echo json_encode(array("message"=>"No units found."));
+    echo json_encode(array("message"=>"No assignments found."));
 }
 ?>
