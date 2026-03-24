@@ -24,7 +24,7 @@ class User{
             $this->conn = $db;
         }
 
-    // read all user records
+    // Read all user records
         public function read(){
             $query = "SELECT * 
                                 FROM {$this->table} AS {$this->alias}
@@ -38,7 +38,7 @@ class User{
 
         }
 
-     //Read a single User record by Id
+     // Read a single User record by Id
         public function readSingle(){
             $query = "SELECT * 
                                 FROM {$this->table} AS {$this->alias}
@@ -64,6 +64,65 @@ class User{
                 return $stmt;
 
         }
+
+           // Update Address of a User record
+        public function updateAddress(){
+
+            $query = "UPDATE {$this->table} SET ";
+            $fields = [];
+
+            if(isset($this->street1)){
+                $fields[] = "street1 = :street1";
+            }
+            if(isset($this->street2)){
+                $fields[] = "street2 = :street2";
+            }
+            if(isset($this->city)){
+                $fields[] = "city = :city";
+            }
+            if(isset($this->postCode)){
+                $fields[] = "postCode = :postCode";
+            }
+
+            $query .= implode(", ", $fields);
+            $query .= " WHERE userId = :userId";
+
+            $stmt = $this->conn->prepare($query);
+
+            
+            $this->userId = htmlspecialchars(strip_tags($this->userId));
+
+            //Clean the bind for each field if it is provided
+            if(isset($this->street1)){
+                $this->street1 = htmlspecialchars(strip_tags($this->street1));
+                $stmt->bindParam(":street1", $this->street1);
+            }
+            if(isset($this->street2)){
+                $this->street2 = htmlspecialchars(strip_tags($this->street2));
+                $stmt->bindParam(":street2", $this->street2);
+            }
+            if(isset($this->city)){
+                $this->city = htmlspecialchars(strip_tags($this->city));
+                $stmt->bindParam(":city", $this->city);
+            }
+            if(isset($this->postCode)){
+                $this->postCode = htmlspecialchars(strip_tags($this->postCode));
+                $stmt->bindParam(":postCode", $this->postCode);
+            }
+
+            $stmt->bindParam(":userId", $this->userId);
+
+            if($stmt->execute()){
+                return true;
+            }
+
+            printf("Error %s. \n", $stmt->error);
+            return false;
+        }
+
+
+
+
 
         //Create a new User record
        /* public function create(){
