@@ -9,7 +9,7 @@ header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type,
 
 include_once("../../includes-api/initialize.php");
 
-//Create a new instance of the Unit class
+//Create a new instance of the Grade class
 //This allows us to use its structure and functions
 
 $grades = new Grades($db);

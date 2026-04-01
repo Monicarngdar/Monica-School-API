@@ -5,7 +5,6 @@ class Event{
     // db related properties
         private $conn;
         private $table = "user_calendar";
-        private $alias = "u";
 
     // table fields
         public $calendarId;
@@ -18,6 +17,38 @@ class Event{
     // a function that is triggered automatically when an instance of the class is created
         public function __construct($db){
             $this->conn = $db;
+        }
+
+         // Read all User Event records
+       public function read(){
+        $query = "SELECT * FROM {$this->table} ORDER BY eventDate ASC";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    // Read a single Event record by calendarId
+        public function readSingle(){
+            $query = "SELECT * 
+                    FROM {$this->table}
+                    WHERE calendarId = ?
+                    LIMIT 1";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $this->calendarId);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if($row){
+                $this->calendarId = $row["calendarId"];
+                $this->userId = $row["userId"];
+                $this->eventDate = $row["eventDate"];
+                $this->eventDescription = $row["eventDescription"];
+                $this->eventType = $row["eventType"];
+            }
         }
 
       //Create a new User Event record
@@ -49,6 +80,7 @@ class Event{
                 print_r("Error %s. \n", $stmt->error);
                 return false;
         } 
+        
 
 }
 ?>
