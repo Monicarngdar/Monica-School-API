@@ -30,26 +30,26 @@ class Event{
     }
 
     // Read a single Event record by calendarId
-        public function readSingle(){
-            $query = "SELECT * 
-                    FROM {$this->table}
-                    WHERE calendarId = ?
-                    LIMIT 1";
+    public function readSingle(){
+        $query = "SELECT * 
+                FROM {$this->table}
+                WHERE calendarId = ?
+                LIMIT 1";
 
-            $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(1, $this->calendarId);
-            $stmt->execute();
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->calendarId);
+        $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($row){
-                $this->calendarId = $row["calendarId"];
-                $this->userId = $row["userId"];
-                $this->eventDate = $row["eventDate"];
-                $this->eventDescription = $row["eventDescription"];
-                $this->eventType = $row["eventType"];
-            }
+        if($row){
+            $this->calendarId = $row["calendarId"];
+            $this->userId = $row["userId"];
+            $this->eventDate = $row["eventDate"];
+            $this->eventDescription = $row["eventDescription"];
+            $this->eventType = $row["eventType"];
         }
+    }
 
       //Create a new User Event record
        public function create(){
@@ -80,7 +80,43 @@ class Event{
                 print_r("Error %s. \n", $stmt->error);
                 return false;
         } 
-        
 
-}
+        // Update an existing Event record
+            public function update(){
+                $query = "UPDATE {$this->table} 
+                        SET userId = :userId, 
+                            eventDate = :eventDate, 
+                            eventDescription = :eventDescription, 
+                            eventType = :eventType
+                          WHERE calendarId = :calendarId";
+
+                 $stmt = $this->conn->prepare($query);
+
+                 // clean up data sent by user/3rd party system (for security)
+                $this->calendarId = htmlspecialchars(strip_tags($this->calendarId));
+                $this->userId = htmlspecialchars(strip_tags($this->userId));
+                $this->eventDate = htmlspecialchars(strip_tags($this->eventDate));
+                $this->eventDescription = htmlspecialchars(strip_tags($this->eventDescription));
+                $this->eventType = htmlspecialchars(strip_tags($this->eventType));
+
+               // bind parameters to sql statement
+                $stmt->bindParam(":calendarId", $this->calendarId);
+                $stmt->bindParam(":userId", $this->userId);
+                $stmt->bindParam(":eventDate", $this->eventDate);
+                $stmt->bindParam(":eventDescription", $this->eventDescription);
+                $stmt->bindParam(":eventType", $this->eventType);
+    
+
+                     if($stmt->execute())
+                    {
+                        return true;
+                    }
+
+                    printf("Error %s. \n", $stmt->error);
+                    return false;
+                }
+                                
+        
+     }
+
 ?>
