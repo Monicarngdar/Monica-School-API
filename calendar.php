@@ -237,6 +237,8 @@ $start=false;
           <?php   if ($_SESSION['userRole']==3 ): //This button shows only for the admin user?>
             <a href="calendar-event.php" class="btn btn-primary btn-sm">Schedule New Event</a>
             <?php endif ?>
+
+               <a href="calendar-event.php" class="btn btn-primary btn-sm">Schedule My Event</a>
             <a href="?date=<?php echo $today;?>" class="btn btn-secondary btn-sm">Today</a>
         </div>
     </div>

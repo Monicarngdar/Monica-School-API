@@ -14,5 +14,6 @@ require_once(CORE_PATH."units.php");
 require_once(CORE_PATH."attendance.php");
 require_once(CORE_PATH."assignments.php");
 require_once(CORE_PATH."grades.php");
+require_once(CORE_PATH."event.php");
 
 ?>

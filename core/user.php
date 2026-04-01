@@ -121,37 +121,7 @@ class User{
         }
 
 
-
-
-
-        //Create a new User record
-       /* public function create(){
-            $query = "INSERT INTO {$this->table}
-                           (username, firstName, lastname, age)
-                           VALUES (:username, :firstName, :lastName, :age);";
-
-            $stmt = $this->conn->prepare($query);
-
-            //clean up the data sent by 3rd party party systems (for security)
-            $this->username = htmlspecialchars(strip_tags($this->username));
-            $this->firstName = htmlspecialchars(strip_tags($this->firstName));
-            $this->lastName = htmlspecialchars(strip_tags($this->lastName));
-            $this->age = htmlspecialchars(strip_tags($this->age));
-
-            // bind parameters to sql statement
-            $stmt->bindParam(":username", $this->username);
-            $stmt->bindParam(":firstName", $this->firstName);
-            $stmt->bindParam(":lastName", $this->lastName);
-            $stmt->bindParam(":age", $this->age);
-
-            if($stmt->execute())
-                {
-                    return true;
-                }
-
-                print_r("Error %s. \n", $stmt->error);
-                return false;
-        } */
+  
         
 }
 
