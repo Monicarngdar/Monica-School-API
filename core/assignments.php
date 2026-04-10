@@ -35,4 +35,27 @@ class Assignments{
 
         }
 
+            // Delete an Assignment record
+        public function delete(){
+            $query = "DELETE FROM {$this->table}
+                        WHERE assignmentId = :assignmentId;";
+
+            $stmt = $this->conn->prepare($query);
+
+            // clean up data sent by user/3rd party system (for security)
+            $this->assignmentId = htmlspecialchars(strip_tags($this->assignmentId));
+
+            // bind parameters to sql statement
+            $stmt->bindParam(":assignmentId", $this->assignmentId);
+
+            if($stmt->execute())
+            {
+                return true;
+            }
+                printf("Error %s. \n", $stmt->error);
+                return false;
+            }
+
+
+
 }
