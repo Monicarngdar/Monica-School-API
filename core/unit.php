@@ -8,14 +8,12 @@ class Unit{
         private $alias = "u";
 
     // table fields
-        public $unitTimetableId;
         public $unitId;
-        public $classId;
-        public $lecturerId;
-        public $room;
-        public $day;
-        public $startTime;
-        public $endTime;
+        public $courseId;
+        public $semester;
+        public $unitName;
+        public $unitDescription;
+ 
         
     // constructor with db connection
     // a function that is triggered automatically when an instance of the class is created

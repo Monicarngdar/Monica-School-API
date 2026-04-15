@@ -10,7 +10,8 @@ require_once("config.php");
 // define the class files
 require_once(CORE_PATH."user.php");
 require_once(CORE_PATH."timetable.php");
-require_once(CORE_PATH."units.php");
+require_once(CORE_PATH."unit.php");
+require_once(CORE_PATH."unitLecturer.php");
 require_once(CORE_PATH."attendance.php");
 require_once(CORE_PATH."assignments.php");
 require_once(CORE_PATH."grades.php");

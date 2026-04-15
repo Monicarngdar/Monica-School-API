@@ -9,11 +9,12 @@ header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type,
 
 include_once("../../includes-api/initialize.php");
 
-//Create a new instance of the Unit class
+//Create a new instance of the Unit Lecturer class
 //This allows us to use its structure and functions
 
-$unit = new Unit($db);
-
+$unit = new UnitLecturer($db);
+$unitId =  isset($_GET["unitId"]) ? $_GET["unitId"] : die ();
+$unit -> unitId = $unitId;
 $result = $unit->read();
 $num = $result->rowCount();
 
@@ -24,11 +25,13 @@ if($num > 0){
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $unit_item = array(
+
+            "unitLecturerId" => $unitLecturerId,
+            "lecturerId" => $lecturerId,
             "unitId" => $unitId,
-            "courseId" => $courseId,
-            "semester" => $semester,
-            "unitName" => $unitName,
-            "runitDescription" => $unitDescription,
+            "name" => $name,
+            "surname" => $surname,
+
         );
 
         array_push($units_list['data'], $unit_item);
@@ -38,6 +41,6 @@ if($num > 0){
     echo json_encode($units_list);
 }
 else{
-    echo json_encode(array("message"=>"No units found."));
+    echo json_encode(array("message"=>"No units of lecturer found."));
 }
 ?>
