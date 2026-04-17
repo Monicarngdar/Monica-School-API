@@ -6,18 +6,24 @@ header("Access-Control-Allow-Methods: GET");
 
 header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With");
 
+if($_SERVER["REQUEST_METHOD"] != "GET"){
+    http_response_code(405);
+    echo json_encode(array("message" => "Incorrect Request Method used."));
+    die();
+}
 
 include_once("../../includes-api/initialize.php");
 
 //Create a new instance of the Event class
 //This allows us to use its structure and functions
-
 $events = new Event($db);
 
 $result = $events->read();
 $num = $result->rowCount();
 
 if($num > 0){
+    // Success response
+    http_response_code(200);
     $events_list = array();
     $events_list ['data'] = array();
     
@@ -28,7 +34,7 @@ if($num > 0){
             "userId" => $userId,
             "eventDate" => $eventDate,
             "eventDescription" => $eventDescription,
-            "eventType" => $eventType,
+            "eventType" => $eventType
         );
 
         array_push($events_list['data'], $events_item);
@@ -38,6 +44,8 @@ if($num > 0){
     echo json_encode($events_list);
 }
 else{
+     // No data found response
+     http_response_code(404);
     echo json_encode(array("message"=>"No events found."));
 }
 ?>
