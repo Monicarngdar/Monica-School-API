@@ -6,6 +6,11 @@ header("Access-Control-Allow-Methods: GET");
 
 header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With");
 
+if($_SERVER["REQUEST_METHOD"] != "GET"){
+    http_response_code(405);
+    echo json_encode(array("message" => "Incorrect Request Method used."));
+    die();
+}
 
 include_once("../../includes-api/initialize.php");
 
@@ -13,14 +18,20 @@ include_once("../../includes-api/initialize.php");
 //This allows us to use its structure and functions
 $user = new User($db);
 
-// the following needs to change : call new function with parameter
+// Validate ID
+if(isset($_GET["id"])){
+$user->userId = $_GET["id"];
+}else{
+    http_response_code(400);
+    echo json_encode(array("message" => "User ID was not provided."));
+    die();
+}
 
-$user->id =  isset($_GET["id"]) ? $_GET["id"] : die ();
-
-$result = $user->readSingle();
-$num = $result->rowCount();
-
-if($num > 0){
+$user->readSingle();
+// Check if user exists
+if($user->email != null){
+     // Success response
+    http_response_code(200);
     $user_info = array(
         'userId' => $user->userId,
         'name' => $user->name,
@@ -30,11 +41,14 @@ if($num > 0){
         'street1' => $user->street1,
         'street2' => $user->street2,
         'city' => $user->city,
-        'postCode' => $user->postCode,
+        'postCode' => $user->postCode
     );
-    print_r(json_encode($user_info));
-}
-else{
-    echo json_encode(array("message"=>"No users found."));
+
+    echo json_encode($user_info);
+
+}else{
+    // No data found response
+    http_response_code(404);
+    echo json_encode(array("message" => "User not found."));
 }
 ?>

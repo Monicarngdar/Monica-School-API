@@ -40,31 +40,37 @@ class User{
 
      // Read a single User record by Id
         public function readSingle(){
+
             $query = "SELECT * 
-                                FROM {$this->table} AS {$this->alias}
-                                WHERE {$this->alias}.userId = ?
-                                LIMIT 1;";
+                    FROM {$this->table} AS {$this->alias}
+                    WHERE {$this->alias}.userId = ?
+                    LIMIT 1;";
 
-             $stmt = $this->conn->prepare($query);
-             $stmt->bindParam(1, $this->id);
-             $stmt->execute();
+            $stmt = $this->conn->prepare($query);
 
-             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                if($row > 0){
-                    $this->name = $row["name"];
-                    $this->surname = $row["surname"];
-                    $this->email = $row["email"];
-                    $this->date_of_birth = $row["date_of_birth"];
-                    $this->street1 = $row["street1"];
-                    $this->street2 = $row["street2"];
-                    $this->city = $row["city"];
-                    $this->postCode= $row["postCode"];
-                }
+      
+            $stmt->bindParam(1, $this->userId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                return $stmt;
+            if($row){
+                $this->userId = $row["userId"];
+                $this->name = $row["name"];
+                $this->surname = $row["surname"];
+                $this->email = $row["email"];
+                $this->date_of_birth = $row["date_of_birth"];
+                $this->street1 = $row["street1"];
+                $this->street2 = $row["street2"];
+                $this->city = $row["city"];
+                $this->postCode = $row["postCode"];
 
+                return true;
+            }
+
+            return false;
         }
 
+        
            // Update Address of a User record
         public function updateAddress(){
 
