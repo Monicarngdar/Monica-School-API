@@ -1,0 +1,57 @@
+
+body {
+    background-color: #f0f2f5;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px #00000014;
+    background-color: #ffffff;
+}
+
+.card h2 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Text and Labels */
+.form-label {
+    font-family: 'Tahoma';
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.my-skolar {
+    font-family: 'Tahoma';
+    color: #2787B4;
+}
+
+/* Inputs */
+.form-select, .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+textarea.form-control {
+    font-size: 0.9rem;
+    background-color: #fdfdfd;
+}
+
+/* Response Body */
+pre {
+    background-color: #1e1e1e;
+    color: #9cdcfe; 
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+}
+
