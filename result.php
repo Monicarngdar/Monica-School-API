@@ -28,19 +28,26 @@ foreach ($data as $user) {
 
 <?php if ($_REQUEST["api"]=="user"){
 
-$result = getUserbyId($_REQUEST["id"]); // getUser calls the api via cURL
-
-
+$result = getUserbyId($_REQUEST["id"]); 
     echo "<div style='border:1px solid black; margin:10px; padding:10px'>";
     echo "<p><b>Fullname:</b> {$result['name']} {$result['surname']}</p>";
     echo "<p><b>Email:</b> {$result['email']}</p>";
     echo "<p><b>Street:</b> {$result['street1']} {$result['street2']}</p>";
     echo "<p><b>City:</b> {$result['city']}</p>";
     echo "</div>";
-
 }
 ?> 
 
+<!-- Patch User Address -->
+<?php
+if ($_REQUEST["api"]=="updateUserAddress"){
+
+$result = updateUserAddress();
+    echo "<div style='border:1px solid black; margin:10px; padding:10px'>";
+    echo "<p><b>Message:</b> {$result['message']}";
+    echo "</div>";
+}
+?>
 
 <!-- Units Lecturers-->
 <?php
@@ -147,6 +154,16 @@ foreach ($data as $a) {
 }
 ?>
 
+<!-- Delete Assignment -->
+<?php
+if ($_REQUEST["api"]=="deleteAssignment"){
+
+$result = deleteAssignment($_REQUEST["id"]);
+   echo "<div style='border:1px solid black; margin:10px; padding:10px'>";
+    echo "<p><b>Message:</b> {$result['message']}";
+    echo "</div>";
+}
+?>
 
 <!-- Events -->
 <?php
@@ -170,6 +187,28 @@ foreach ($data as $e) {
 if ($_REQUEST["api"]=="createEvent"){
 
 $result = createEvent();
+   echo "<div style='border:1px solid black; margin:10px; padding:10px'>";
+    echo "<p><b>Message:</b> {$result['message']}";
+    echo "</div>";
+}
+?>
+
+<!-- Update Event -->
+<?php
+if ($_REQUEST["api"]=="updateEvent"){
+
+$result = updateEvent();
+   echo "<div style='border:1px solid black; margin:10px; padding:10px'>";
+    echo "<p><b>Message:</b> {$result['message']}";
+    echo "</div>";
+}
+?>
+
+<!-- Delete Event -->
+<?php
+if ($_REQUEST["api"]=="deleteEvent"){
+
+$result = deleteEvent($_REQUEST["id"]);
    echo "<div style='border:1px solid black; margin:10px; padding:10px'>";
     echo "<p><b>Message:</b> {$result['message']}";
     echo "</div>";
