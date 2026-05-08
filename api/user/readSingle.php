@@ -14,18 +14,18 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
 
 include_once("../../includes-api/initialize.php");
 
+
+if (!$oauthUser->userId) {
+    http_response_code(401); // 401 Unauthorized
+    echo json_encode(array("message" => "Invalid or missing OAuth2 Bearer."));
+    die();
+    }
+
 //Create a new instance of the User class
 //This allows us to use its structure and functions
 $user = new User($db);
 
-// Validate ID
-if(isset($_GET["id"])){
-$user->userId = $_GET["id"];
-}else{
-    http_response_code(400);
-    echo json_encode(array("message" => "User ID was not provided."));
-    die();
-}
+$user->userId = $oauthUser->userId;
 
 $user->readSingle();
 // Check if user exists

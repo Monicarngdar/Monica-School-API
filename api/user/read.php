@@ -14,6 +14,20 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
 
 include_once("../../includes-api/initialize.php");
 
+if (!$oauthUser->userId) {
+    http_response_code(401); // 401 Unauthorized
+    echo json_encode(array("message" => "Invalid or missing OAuth2 Bearer."));
+    die();
+    }
+
+    // Only the admin user can list all the users
+if ($oauthUser->roleId!=3) {
+    http_response_code(403); // 403 Forbidden
+    echo json_encode(array("message" => "You do not have the necessary permissions to access this resource."));
+    die();
+    }
+
+
 //Create a new instance of the User class
 //This allows us to use its structure and functions
 $user = new User($db);

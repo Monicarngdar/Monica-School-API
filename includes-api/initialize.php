@@ -7,6 +7,7 @@ defined("CORE_PATH") ? null : define("CORE_PATH",SITE_ROOT.DS."core".DS);
 
 require_once("config.php");
 
+
 // define the class files
 require_once(CORE_PATH."user.php");
 require_once(CORE_PATH."timetable.php");
@@ -16,5 +17,8 @@ require_once(CORE_PATH."attendance.php");
 require_once(CORE_PATH."assignments.php");
 require_once(CORE_PATH."grades.php");
 require_once(CORE_PATH."event.php");
+require_once(CORE_PATH."oauthUser.php");
+
+require_once("authenticate.php");
 
 ?>
