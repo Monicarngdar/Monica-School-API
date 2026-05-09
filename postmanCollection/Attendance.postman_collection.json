@@ -1,0 +1,67 @@
+{
+  "info": {
+    "_postman_id": "4e12156b-ab7f-4a4d-9a33-01ed8087679b",
+    "name": "Attendance",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52229842",
+    "_collection_link": "https://go.postman.co/collection/52229842-4e12156b-ab7f-4a4d-9a33-01ed8087679b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get Attendance",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/attendance/read.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "attendance",
+            "read.php"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearer_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

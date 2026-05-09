@@ -21,9 +21,12 @@ class Event{
 
          // Read all User Event records
        public function read(){
-        $query = "SELECT * FROM {$this->table} ORDER BY eventDate ASC";
+        $query = "SELECT * FROM {$this->table} 
+                        WHERE userId = ?
+                        ORDER BY eventDate ASC";
 
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->userId);
         $stmt->execute();
 
         return $stmt;
@@ -34,11 +37,13 @@ class Event{
         $query = "SELECT * 
                 FROM {$this->table}
                 WHERE calendarId = ?
+                AND userId = ?
                 LIMIT 1";
 
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $this->calendarId);
-        $stmt->execute();
+   $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(1, $this->calendarId);
+    $stmt->bindParam(2, $this->userId);
+    $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -88,7 +93,8 @@ class Event{
                             eventDate = :eventDate, 
                             eventDescription = :eventDescription, 
                             eventType = :eventType
-                          WHERE calendarId = :calendarId";
+                          WHERE calendarId = :calendarId
+                          AND userId = :userIdw";
 
                  $stmt = $this->conn->prepare($query);
 
@@ -105,21 +111,26 @@ class Event{
                 $stmt->bindParam(":eventDate", $this->eventDate);
                 $stmt->bindParam(":eventDescription", $this->eventDescription);
                 $stmt->bindParam(":eventType", $this->eventType);
+                $stmt->bindParam(":userIdw", $this->userId);
+                
     
 
                      if($stmt->execute())
                     {
+                          if($stmt->rowCount() > 0){
                         return true;
-                    }
-
+                        }
+                        return false;
+                }   
                     printf("Error %s. \n", $stmt->error);
                     return false;
-                }
+            }
 
                 // Delete an Event record
             public function delete(){
                 $query = "DELETE FROM {$this->table}
-                            WHERE calendarId = :calendarId;";
+                            WHERE calendarId = :calendarId
+                            AND userId = :userId;";
 
                 $stmt = $this->conn->prepare($query);
 
@@ -128,17 +139,22 @@ class Event{
 
                 // bind parameters to sql statement
                 $stmt->bindParam(":calendarId", $this->calendarId);
+                $stmt->bindParam(":userId", $this->userId);
+                     if($stmt->execute())
 
-                if($stmt->execute())
-                {
-                    return true;
-                }
+                    {
+                          if($stmt->rowCount() > 0){
+                        return true;
+                        }
+                        return false;
+                }   
                     printf("Error %s. \n", $stmt->error);
                     return false;
-            }
-
                                 
         
      }
+
+}
+    
 
 ?>

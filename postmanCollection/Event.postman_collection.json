@@ -1,0 +1,191 @@
+{
+  "info": {
+    "_postman_id": "a7988843-b6d2-43c0-b432-bcac3c60b101",
+    "name": "Event",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52229842",
+    "_collection_link": "https://go.postman.co/collection/52229842-a7988843-b6d2-43c0-b432-bcac3c60b101?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Post Events",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"eventDate\": \"2026-05-03\",\r\n  \"eventDescription\": \"Test 1\",\r\n  \"eventType\": \"School Holidays\",\r\n  \"userId\": 25\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/event/create.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "event",
+            "create.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/event/read.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "event",
+            "read.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Event",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/event/readSingle.php?id=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "event",
+            "readSingle.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Put Event",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"calendarId\": 4,\r\n    \"eventDate\": \"2026-04-07\",\r\n    \"eventDescription\": \"Testing Token Hello12345\",\r\n    \"eventType\": \"School Holidays\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/event/update.php?id=5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "event",
+            "update.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Event",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/event/delete.php?id=9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "event",
+            "delete.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "9"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearer_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

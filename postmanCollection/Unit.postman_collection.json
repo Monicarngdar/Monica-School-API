@@ -1,0 +1,61 @@
+{
+  "info": {
+    "_postman_id": "131eb60c-974c-4c1b-b893-8c3b6c1e18e8",
+    "name": "Unit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52229842",
+    "_collection_link": "https://go.postman.co/collection/52229842-131eb60c-974c-4c1b-b893-8c3b6c1e18e8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get Units",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/unit/read.php",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "unit",
+            "read.php"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Unit Lecturer",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/Monica-School-API/api/unitLecturer/read.php?unitId=20",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "Monica-School-API",
+            "api",
+            "unitLecturer",
+            "read.php"
+          ],
+          "query": [
+            {
+              "key": "unitId",
+              "value": "20"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
