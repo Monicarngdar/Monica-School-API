@@ -24,7 +24,6 @@ if (!$oauthUser->userId) {
 //Create a new instance of the User class
 //This allows us to use its structure and functions
 $user = new User($db);
-
 $user->userId = $oauthUser->userId;
 
 $user->readSingle();

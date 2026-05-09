@@ -26,9 +26,11 @@ class Timetable{
     // read all timetable records
         public function read(){
             $query = "SELECT * 
-                                FROM {$this->table} AS {$this->alias};";
+                                FROM {$this->table} AS {$this->alias}
+                                WHERE {$this->alias}.classId = ?;";
 
              $stmt = $this->conn->prepare($query);
+              $stmt->bindParam(1, $this->classId);
 
             $stmt->execute();
 

@@ -24,10 +24,11 @@ class Attendance{
     // read all attendance records
         public function read(){
             $query = "SELECT * 
-                                FROM {$this->table} AS {$this->alias};";
+                                FROM {$this->table} AS {$this->alias}
+                                WHERE {$this->alias}.userAccountId = ?;";
 
-             $stmt = $this->conn->prepare($query);
-
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $this->userAccountId);
             $stmt->execute();
 
             return $stmt;

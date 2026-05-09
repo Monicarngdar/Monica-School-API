@@ -14,6 +14,12 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
 
 include_once("../../includes-api/initialize.php");
 
+if (!$oauthUser->userId) {
+    http_response_code(401); // 401 Unauthorized
+    echo json_encode(array("message" => "Invalid or missing OAuth2 Bearer."));
+    die();
+    }
+
 //Create a new instance of the Unit Lecturer class
 //This allows us to use its structure and functions
 $unit = new UnitLecturer($db);

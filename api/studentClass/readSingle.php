@@ -14,44 +14,36 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
 
 include_once("../../includes-api/initialize.php");
 
+
 if (!$oauthUser->userId) {
     http_response_code(401); // 401 Unauthorized
     echo json_encode(array("message" => "Invalid or missing OAuth2 Bearer."));
     die();
     }
 
-//Create a new instance of the Unit class
+//Create a new instance of the Class
 //This allows us to use its structure and functions
-$unit = new Unit($db);
+$class = new StudentClass($db);
 
-$result = $unit->read();
-$num = $result->rowCount();
+$class->classStudentId = $oauthUser->userId;
 
-if($num > 0){
-    // Success response
+$class->readSingle();
+// Check if user exists
+if($class->classId != null){
+     // Success response
     http_response_code(200);
-    $units_list = array();
-    $units_list ['data'] = array();
-    
-    while($row = $result->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
-        $unit_item = array(
-            "unitId" => $unitId,
-            "courseId" => $courseId,
-            "semester" => $semester,
-            "unitName" => $unitName,
-            "unitDescription" => $unitDescription,
-        );
+    $user_info = array(
+        'classStudentId' => $class->classStudentId,
+        'classId' => $class->classId,
+        'studentId' => $class->studentId
 
-        array_push($units_list['data'], $unit_item);
+    );
 
-    }
+    echo json_encode($user_info);
 
-    echo json_encode($units_list);
-}
-else{
+}else{
     // No data found response
-     http_response_code(404);
-    echo json_encode(array("message"=>"No units found."));
+    http_response_code(404);
+    echo json_encode(array("message" => "Class for user not found."));
 }
 ?>

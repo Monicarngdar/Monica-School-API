@@ -5,10 +5,17 @@ class Assignments{
     // db related properties
         private $conn;
         private $table = "assignments";
+        private $tableu = "unit";
+        private $tableus = "unit_student";
+        private $tablec = "course";
         private $alias = "a";
+        private $aliasu = "u";
+        private $aliasus = "us";
+        private $aliasc = "c";
 
     // table fields
         public $assignmentId;
+        public $studentId;
         public $userId;
         public $unitId;
         public $taskTitle;
@@ -22,40 +29,26 @@ class Assignments{
             $this->conn = $db;
         }
 
-    // read all assignments records
+    // read all assignments records for the authenticated user, we need to join with four tables to get the assignment of a user
         public function read(){
             $query = "SELECT * 
-                                FROM {$this->table} AS {$this->alias};";
+                                FROM {$this->table} AS {$this->alias},
+                                {$this->tableu} AS {$this->aliasu},
+                                {$this->tableus} AS {$this->aliasus},
+                                {$this->tablec} AS {$this->aliasc}
+                                WHERE {$this->aliasus}.studentId = ? 
+                                AND {$this->aliasus}.unitId = {$this->aliasu}.unitId
+                                AND {$this->alias}.unitId = {$this->aliasu}.unitId
+                                AND {$this->aliasc}.courseId = {$this->aliasu}.courseId;";
 
-             $stmt = $this->conn->prepare($query);
-
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $this->studentId);
             $stmt->execute();
 
             return $stmt;
 
         }
 
-            // Delete an Assignment record
-        public function delete(){
-            $query = "DELETE FROM {$this->table}
-                        WHERE assignmentId = :assignmentId;";
-
-            $stmt = $this->conn->prepare($query);
-
-            // clean up data sent by user/3rd party system (for security)
-            $this->assignmentId = htmlspecialchars(strip_tags($this->assignmentId));
-
-            // bind parameters to sql statement
-            $stmt->bindParam(":assignmentId", $this->assignmentId);
-
-            if($stmt->execute())
-            {
-                return true;
-            }
-                printf("Error %s. \n", $stmt->error);
-                return false;
-            }
-
-
+          
 
 }
