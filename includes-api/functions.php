@@ -4,6 +4,8 @@ function apiRequest($url, $method = "GET", $data = null) // function to send API
 {
     $curl = curl_init();     // Initialize cURL session
 
+// get the OAuth 2.0 token from a cookie
+    $token = isset($_COOKIE['token']) ? $_COOKIE['token'] : '';
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
@@ -14,12 +16,12 @@ function apiRequest($url, $method = "GET", $data = null) // function to send API
     }
 
     curl_setopt($curl, CURLOPT_HTTPHEADER, [
-        "Content-Type: application/json"
-    ]);
+        "Content-Type: application/json",
+         "Authorization: Bearer " . $token
+        ]);
 
     $result = curl_exec($curl);
     curl_close($curl);
-
     return json_decode($result, true);     // Decode JSON response into associative array
 }
 
@@ -29,15 +31,13 @@ function getUsers()
 {
     return apiRequest("http://localhost:8080/Monica-School-API/api/user/read.php");
 }
-function getUserById($id)
+function getUserById()
 {
-    $data["id"]=$id;
-    return apiRequest("http://localhost:8080/Monica-School-API/api/user/readSingle.php?id=$id");
+    return apiRequest("http://localhost:8080/Monica-School-API/api/user/readSingle.php");
 }
 // PATCH will send only the updated fields
 function updateUserAddress()
 {
-    $data["userId"]= $_REQUEST["userId"];
     if(!empty($_REQUEST["street1"])){
         $data["street1"]= $_REQUEST["street1"];    // Only include fields if they are not empty (partial update)
     }
@@ -70,9 +70,9 @@ function getUnits()
 
 
 /* Timetable */
-function getTimetable()
+function getTimetable($classId)
 {
-    return apiRequest("http://localhost:8080/Monica-School-API/api/timetable/read.php");
+    return apiRequest("http://localhost:8080/Monica-School-API/api/timetable/read.php?classId=$classId");
 }
 
 
@@ -109,7 +109,6 @@ function getEvents()
 }
 function createEvent()
 {
-    $data["userId"]= $_REQUEST["userId"];
     $data["eventDate"]= $_REQUEST["eventDate"];
     $data["eventDescription"]= $_REQUEST["eventDescription"];
     $data["eventType"]= $_REQUEST["eventType"];
@@ -118,7 +117,6 @@ function createEvent()
 function updateEvent()
 {
     $data["calendarId"]= $_REQUEST["calendarId"];
-    $data["userId"]= $_REQUEST["userId"];
     $data["eventDate"]= $_REQUEST["eventDate"];
     $data["eventDescription"]= $_REQUEST["eventDescription"];
     $data["eventType"]= $_REQUEST["eventType"];

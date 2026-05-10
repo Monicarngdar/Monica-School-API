@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2026 at 07:27 PM
+-- Generation Time: May 10, 2026 at 05:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -191,6 +191,14 @@ CREATE TABLE `grades` (
   `lecturerComment` varchar(1024) NOT NULL,
   `dateRecorded` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `grades`
+--
+
+INSERT INTO `grades` (`userAccountId`, `assignmentId`, `lecturerUserAccountId`, `marksEarned`, `lecturerComment`, `dateRecorded`) VALUES
+(25, 44, 40, 100, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', '2026-05-12'),
+(25, 45, 31, 100, 'Testing ', '2026-05-10');
 
 -- --------------------------------------------------------
 
@@ -465,10 +473,11 @@ CREATE TABLE `user_calendar` (
 --
 
 INSERT INTO `user_calendar` (`calendarId`, `userId`, `eventDate`, `eventDescription`, `eventType`) VALUES
-(9, 25, '2026-05-30', 'Go on a walk', 'School Holidays'),
-(10, 25, '2026-05-30', 'Book a trip', 'School Holidays'),
-(18, 25, '2026-05-03', 'Creating new event test', 'School Holidays'),
-(19, 31, '2026-05-03', 'Creating new event lecturer 123', 'School Holidays');
+(23, 31, '2026-05-03', 'Lecturer Event Create', 'School Holidays'),
+(25, 25, '2026-05-03', 'Student Event Create', 'School Holidays'),
+(26, 25, '2026-05-10', 'New Event Student 123', 'School Holidays'),
+(27, 31, '2026-05-10', 'New Event Lecturer 123', 'School Holidays'),
+(28, 30, '2026-05-10', 'New Event Admin', 'School Holidays');
 
 -- --------------------------------------------------------
 
@@ -493,7 +502,7 @@ CREATE TABLE `user_profile` (
 --
 
 INSERT INTO `user_profile` (`userId`, `name`, `surname`, `email`, `date_of_birth`, `street1`, `street2`, `city`, `postCode`) VALUES
-(25, 'Kiara', 'Student', 'kiarabrown@gmail.com', '2025-12-22', '16', 'Triq Glow', 'Valletta', 'VLT 124'),
+(25, 'Kiara', 'Student', 'kiarabrown@gmail.com', '2025-12-22', 'Example Street 1', 'Example Street 2', 'Example City', 'EX 1234'),
 (30, 'Admin', 'User', 'admin@gmail.com', '2025-12-29', '7', 'Triq Flor', 'Qormi', 'QRM 222'),
 (31, 'Zoe', 'Lecturer', 'zoey@gmail.com', '2025-12-29', '6', 'Triq Bay', 'Valletta', 'VRT 111'),
 (39, 'new', 'test1', 'chloe@gmail.co', '2026-03-20', '15', 'Triq Sun', 'Valletta', 'VLT 124'),
@@ -789,7 +798,7 @@ ALTER TABLE `user_account`
 -- AUTO_INCREMENT for table `user_calendar`
 --
 ALTER TABLE `user_calendar`
-  MODIFY `calendarId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `calendarId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables

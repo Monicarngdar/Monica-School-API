@@ -27,12 +27,9 @@ class oauthUser{
                     LIMIT 1;";
 
             $stmt = $this->conn->prepare($query);
-
-      
             $stmt->bindParam(1, $this->token);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
             if($row){
                 $this->userId = $row["userId"];
                 $this->roleId = $row["roleId"];

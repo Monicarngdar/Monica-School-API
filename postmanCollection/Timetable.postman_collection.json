@@ -13,7 +13,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/Monica-School-API/api/timetable/read.php",
+          "raw": "http://localhost:8080/Monica-School-API/api/timetable/read.php?classId=18",
           "protocol": "http",
           "host": [
             "localhost"
@@ -24,10 +24,50 @@
             "api",
             "timetable",
             "read.php"
+          ],
+          "query": [
+            {
+              "key": "classId",
+              "value": "18"
+            }
           ]
         }
       },
       "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearer_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
     }
   ]
 }

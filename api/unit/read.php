@@ -20,10 +20,17 @@ if (!$oauthUser->userId) {
     die();
     }
 
+     // Only the student user can access their list of units
+if ($oauthUser->roleId!=1) {
+    http_response_code(403); // 403 Forbidden
+    echo json_encode(array("message" => "You do not have the necessary permissions to access this resource."));
+    die();
+    }
+
 //Create a new instance of the Unit class
 //This allows us to use its structure and functions
 $unit = new Unit($db);
-
+$unit->studentId = $oauthUser->userId;
 $result = $unit->read();
 $num = $result->rowCount();
 
