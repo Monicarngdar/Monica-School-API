@@ -26,6 +26,9 @@
                 </div>
 
                 <div class="card-body">
+
+        <!--this is used this to figure out which specific user role is logged in based on their token -->
+        <!--Each user role has their own token generated and added to the database table user_account -->
 <?php
 $currentToken = isset($_COOKIE['token']) ? $_COOKIE['token'] : 'None Set';
 if ($currentToken == "ghp_7kL9mN1oP3qR5sT7uV9wX1yZ3bA5cD7eF9gH1iJ3kL5mN7oP9qR1sT3uV5wX7y"){

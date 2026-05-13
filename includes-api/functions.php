@@ -95,11 +95,6 @@ function getAssignments()
 {
     return apiRequest("http://localhost:8080/Monica-School-API/api/assignments/read.php");
 }
-function deleteAssignment($id)
-{
-    return apiRequest("http://localhost:8080/Monica-School-API/api/assignments/delete.php?id=$id", "DELETE");
-}
-
 
 
 /* Events  */
@@ -112,7 +107,7 @@ function createEvent()
     $data["eventDate"]= $_REQUEST["eventDate"];
     $data["eventDescription"]= $_REQUEST["eventDescription"];
     $data["eventType"]= $_REQUEST["eventType"];
-    return apiRequest("http://localhost:8080/Monica-School-API/api/event/create.php?", "POST", $data);   // Send POST request to create event
+    return apiRequest("http://localhost:8080/Monica-School-API/api/event/create.php?", "POST", $data);   // Send POST request to create an event
 }
 function updateEvent()
 {
@@ -120,12 +115,12 @@ function updateEvent()
     $data["eventDate"]= $_REQUEST["eventDate"];
     $data["eventDescription"]= $_REQUEST["eventDescription"];
     $data["eventType"]= $_REQUEST["eventType"];
-    return apiRequest("http://localhost:8080/Monica-School-API/api/event/update.php","PUT", $data);    // Send PUT request to update event
+    return apiRequest("http://localhost:8080/Monica-School-API/api/event/update.php","PUT", $data);    // Send PUT request to update an event
 }
 
 function deleteEvent($id)
 {
-    return apiRequest("http://localhost:8080/Monica-School-API/api/event/delete.php?id=$id", "DELETE");
+    return apiRequest("http://localhost:8080/Monica-School-API/api/event/delete.php?id=$id", "DELETE"); // Send DELETE request to delete an event
 }
 
 
