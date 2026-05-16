@@ -1,17 +1,63 @@
-# Welcome to MkDocs
+# API Documentation
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Overview
 
-## Commands
+This API provides access to a School Management System. It allows users to retrieve and manage data such as users, units, lecturers, timetables, assignments, grades, attendance, and events.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+All responses are returned in JSON format and can be tested using tools such as Postman or the built-in testing dashboard
+The API returns data in JSON format and is designed to be used with tools such as Postman.
 
-## Project layout
+## Base URL
+http://localhost:8080/Monica-School-API/api/
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+
+## How to Use the API
+HTTP Methods Used
+The API follows standard REST principles:
+
+- GET → Retrieve data
+- POST → Create new data
+- PUT → Fully update existing data
+- PATCH → Partially update existing data
+- DELETE → Remove data
+
+## Authentication
+
+This API uses OAuth Bearer Token authentication to secure protected endpoints.
+
+### How it works:
+
+- A token is assigned to a user after authentication
+- The token must be included in every request
+- The API validates the token before processing the request
+
+### Request Header Format:
+
+- Authorization: Bearer {token}
+- If the token is missing or invalid, the API returns: 401 Unauthorized
+
+## Testing Dashboard
+
+A PHP-based testing dashboard was created to interact with the API without using Postman.
+
+Features:
+
+- View and manage users, units, grades, attendance, assignments, and events
+- Test all HTTP methods (GET, POST, PUT, PATCH, DELETE)
+- Automatically attach OAuth Bearer tokens
+- Send requests through a simple web interface
+
+### How to Use the Dashboard
+
+1. Open the dashboard:
+   http://localhost:8080/Monica-School-API/index.php
+2. Select an API action (e.g. Users, Events, Assignments)
+3. Enter required parameters (if needed)
+4. Click submit to send request
+
+### Authentication in Dashboard
+
+- All requests use OAuth Bearer Token authentication stored in a cookie.
+- The token is automatically attached to each request using cURL: Authorization: Bearer {token}
+
+Read the full authentication guide here: [OAuth Bearer Authentication](auth/authenticate.md) 

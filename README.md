@@ -19,11 +19,12 @@ The API is designed to:
 
 ## Setup 
 1. Install XAMPP and start Apache and MySQL.
-2. Import the `2026-schoolapi` database into phpMyAdmin.
-3. Place the project folder inside the `htdocs` directory.
-4. Access the API using:
+2. Install Postman to test and interact with the API endpoints.
+3. Import the `2026-schoolapi` database into phpMyAdmin.
+4. Place the project folder inside the `htdocs` directory.
+5. Access the API using:
    http://localhost:8080/Monica-School-API/
-5. Import the provided Postman collections to test the API endpoints.
+6. Import the provided Postman collections and environments to test the API endpoints.
 
 
 ## Project Structure
@@ -33,12 +34,18 @@ Examples:
   -	/api/attendance/ → Retrieve attendance records 
   -	/api/user/ → Handle user-related actions     
 
-- **core/** – This folder contains the core logic of the API, such as classes that define how the application works. For example,
-   -   `user.php` has the `User` class that handles reading and updating user data.
+- **core/** – This folder contains the core logic of the API, such as classes that define how the application works. 
+Example:
+   -  `user.php` has the `user` class that handles reading user data.
+   - `event.php` has the `event` class that handles reading, creating, updating or deleting event data.
 
 - **includes-api/** – This folder contains files that help the API function properly:   
     - `config.php` – Sets up the database connection using PDO.   
     - `initialize.php` – Loads required classes and configuration so the endpoints can use them.
+
+- **databaseExport** – This folder contains the `2026-schoolapi` database used for the project.
+
+- **postmanCollection** – This folder contains all Postman collections used to test the API endpoints.
 
 ## Security Considerations
 The API includes several security practices:
@@ -82,7 +89,7 @@ The system processes each request by:
 A basic PHP interface was created to test the API using a browser.
 - `index.php` – form to select API requests  
 - `result.php` – handles requests and shows results  
-- `functions.php` – sends requests using cURL  
+- `includes-api/functions.php` – sends requests using cURL  
 
 ## OAuth Bearer Authentication
 - `includes-api/authenticate.php` -  is responsible for handling Bearer token authentication across all API endpoints. It reads the Authorization header from incoming requests, extracts the Bearer token, and validates it using the OAuth user authentication class.
