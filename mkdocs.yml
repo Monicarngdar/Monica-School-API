@@ -1,1 +1,34 @@
-site_name: My Docs
+site_name: API Documentation
+
+nav:
+  - Home: index.md
+
+  - Authentication:
+      - Authenticate: auth/authenticate.md
+
+  - Users:
+          - Get Users: users/getUsers.md
+          - Get User: users/getUser.md
+          - Get User Address: users/getUserAddress.md
+
+  - Academics:
+          - Get Attendance: attendance/getAttendance.md
+          - Get Grades: grades/getGrades.md
+          - Get Student Class: studentClass/getStudentClass.md
+          - Get Timetable: timetable/getTimetable.md
+          - Get Assignments: assignments/getAssignments.md
+
+  - Units:
+          - Get Units: unit/getUnits.md
+          - Get Unit Lecturer: unit/getUnitLecturer.md
+
+  - Events:
+          - Create Event: events/createEvent.md
+          - Get Event: events/getEvent.md
+          - Get Events: events/getEvents.md
+          - Update Event: events/updateEvent.md
+          - Delete Event: events/deleleEvent.md
+
+
+
+ 
