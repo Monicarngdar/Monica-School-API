@@ -8,7 +8,11 @@ PATCH api/users/updateAddress.php
 
 http://localhost:8080/Monica-School-API/api/user/updateAddress.php
 
-## Params
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
+
+## Parameters
 - userId (integer): The ID of the user
 
 ## Response

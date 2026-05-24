@@ -8,6 +8,9 @@ PUT api/event/update.php
 
 http://localhost:8080/Monica-School-API/api/event/update.php?id=5
 
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
 
 ## Parameters
 - id (integer): The event ID (calendarId)

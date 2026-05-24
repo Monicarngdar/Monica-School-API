@@ -9,6 +9,14 @@ POST api/event/create.php
 http://localhost:8080/Monica-School-API/api/event/create.php
 
 
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
+
+## Parameters
+- `userId` (integer) – The ID of the user to update
+
+
 ## Request Body
 
 ```json

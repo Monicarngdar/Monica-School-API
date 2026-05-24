@@ -8,6 +8,10 @@ GET api/unitLecturer/read.php?unitId={unitId}
 
 http://localhost:8080/Monica-School-API/api/unitLecturer/read.php?unitId=20
 
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
+
 ## Response 
 
 ```json

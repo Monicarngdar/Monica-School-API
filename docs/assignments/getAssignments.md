@@ -8,6 +8,10 @@ GET api/assignments/read.php
 
 http://localhost:8080/Monica-School-API/api/assignments/read.php
 
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
+
 ## Response
 
 ```json

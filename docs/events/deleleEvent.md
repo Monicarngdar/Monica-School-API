@@ -9,6 +9,9 @@ DELETE api/event/delete.php
 
 http://localhost:8080/Monica-School-API/api/event/delete.php?id=9
 
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
 
 ## Parameters
 - id (integer): The ID of the event (calendarId)

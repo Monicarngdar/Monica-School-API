@@ -40,6 +40,18 @@ Postman Environment
 - This API uses role-based access control
 - Even if a user is successfully authenticated, some endpoints are restricted depending on their role.
 
+## Request Header Example
+When sending a request to a protected endpoint, include the token in the header like this:
+
+```http
+Authorization: Bearer {your_token_here}
+```
+
+## Token Validation
+- If the token is **missing** → `401 Unauthorized`
+- If the token is **invalid or does not match any user** → `401 Unauthorized`
+- If the token is valid but the **role has no permission** → `403 Forbidden`
+
 ### Example Responses
 401 Unauthorized (Missing or Invalid Token)
 ```json

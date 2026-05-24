@@ -8,6 +8,12 @@ GET api/event/read.php
 
 http://localhost:8080/Monica-School-API/api/event/read.php
 
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
+
+## Parameters
+- id (integer): The ID of the event (calendarId)
 
 ## Response
 

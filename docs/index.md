@@ -36,6 +36,35 @@ This API uses OAuth Bearer Token authentication to secure protected endpoints.
 - Authorization: Bearer {token}
 - If the token is missing or invalid, the API returns: 401 Unauthorized
 
+## Response Format
+All responses are returned in JSON format.
+
+Success response example:
+```json
+{
+  "data": []
+}
+```
+
+Error response example:
+```json
+{
+  "message": "error description"
+}
+```
+
+## Status Codes
+| Code | Meaning |
+|------|---------|
+| 200 | OK – Request was successful |
+| 201 | Created – New record created successfully |
+| 204 | No Content – Record deleted successfully |
+| 400 | Bad Request – Missing or invalid data |
+| 401 | Unauthorized – Missing or invalid token |
+| 403 | Forbidden – Valid token but no permission |
+| 404 | Not Found – Resource does not exist |
+| 500 | Internal Server Error – Server side error |
+
 ## Testing Dashboard
 
 A PHP-based testing dashboard was created to interact with the API without using Postman.

@@ -8,6 +8,10 @@ GET api/timetable/read.php
 
 http://localhost:8080/Monica-School-API/api/timetable/read.php
 
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
+
 ## Response
 
 ```json

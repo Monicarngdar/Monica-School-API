@@ -8,7 +8,11 @@ GET api/user/readSingle.php
 
 http://localhost:8080/Monica-School-API/api/user/readSingle.php?id=25
 
-## Params
+## Authentication
+Requires a valid Bearer token in the request header:
+Authorization: Bearer {token}
+
+## Parameters
 - id (integer): The ID of the user
 
 ## Response
